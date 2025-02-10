@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fill in the Gap Game</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; }
+        .container { margin: 20px auto; width: 60%; }
+        .sentence { font-size: 20px; margin: 20px 0; }
+        .gap { display: inline-block; width: 100px; height: 30px; border: 2px dashed #333; margin: 5px; vertical-align: middle; text-align: center; }
+        .correct { border-color: green; background-color: #d4edda; }
+        .incorrect { border-color: red; background-color: #f8d7da; }
+    </style>
+</head>
+<body>
+    <p>Find the words scattered below:</p>
+    <h1>laponetopphonegercharbaponkwer</h1>
+    <div class="container">
+        <p class="sentence">
+            <input type="text" class="gap" data-word="laptop">
+            <input type="text" class="gap" data-word="phone"> 
+            <input type="text" class="gap" data-word="charger"> 
+            <input type="text" class="gap" data-word="powerbank">
+        </p>
+        <p id="result"></p>
+        <button onclick="checkAnswers()">Check Answers</button>
+
+    </div>
+    
+    <script>
+        function checkAnswers() {
+            let words = ["laptop", "phone", "charger", "powerbank"];
+            let correct = false;
+            
+            document.querySelectorAll('.gap').forEach(input => {
+                let userInput = input.value.toLowerCase().trim();
+                if (words.includes(userInput)) {
+                    input.classList.add('correct');
+                    input.classList.remove('incorrect');
+                    correct = true;
+                } else {
+                    input.classList.add('incorrect');
+                    input.classList.remove('correct');
+                }
+            });
+            
+            document.getElementById('result').textContent = correct ? 'Correct!' : 'Try again!';
+        }
+    </script>
+    
+</body>
+</html>
